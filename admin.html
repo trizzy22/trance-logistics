@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — Trance Logistics</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+  body{background:var(--ink-mid);}
+  .admin-shell{max-width:980px; margin:0 auto; padding:2.5rem 1.5rem 5rem;}
+  .admin-header{display:flex; justify-content:space-between; align-items:center; margin-bottom:2rem; color:var(--text-on-dark);}
+  .admin-header .brand{color:var(--text-on-dark);}
+  .panel{background:var(--ink); border:1px solid var(--ink-line); border-radius:8px; padding:1.8rem; margin-bottom:1.5rem;}
+  .panel h2{color:var(--text-on-dark); font-size:1.05rem; margin-bottom:0.3rem;}
+  .panel .hint{color:var(--text-on-dark-muted); font-size:0.85rem; margin-bottom:1.2rem;}
+  .field-row{display:grid; grid-template-columns:140px 1fr; gap:1rem; align-items:center; margin-bottom:0.9rem;}
+  .field-row label{font-family:var(--font-mono); font-size:11.5px; color:var(--text-on-dark-muted); text-transform:uppercase;}
+  .field-row input, .field-row textarea, .field-row select{
+    background:var(--ink-mid); border:1px solid var(--ink-line); border-radius:5px; color:var(--text-on-dark);
+    padding:0.6rem 0.75rem; font-family:var(--font-body); font-size:0.9rem; width:100%;
+  }
+  .field-row textarea{min-height:80px; resize:vertical;}
+  .tabs{display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1.5rem;}
+  .tab-btn{
+    background:var(--ink); border:1px solid var(--ink-line); color:var(--text-on-dark-muted);
+    padding:0.55rem 1rem; border-radius:20px; font-family:var(--font-mono); font-size:12px; letter-spacing:0.03em;
+  }
+  .tab-btn.active{border-color:var(--amber); color:var(--amber);}
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block;}
+  .array-item{border:1px solid var(--ink-line); border-radius:6px; padding:1.1rem; margin-bottom:0.9rem; position:relative;}
+  .array-item .remove-btn{
+    position:absolute; top:0.7rem; right:0.7rem; background:none; border:none; color:var(--text-on-dark-muted);
+    font-size:1rem; line-height:1;
+  }
+  .array-item .remove-btn:hover{color:var(--amber);}
+  .add-btn{
+    width:100%; padding:0.7rem; border:1px dashed var(--ink-line); border-radius:6px; background:none;
+    color:var(--text-on-dark-muted); font-family:var(--font-mono); font-size:12.5px;
+  }
+  .add-btn:hover{border-color:var(--amber); color:var(--amber);}
+  #connect-status, #save-status{
+    font-family:var(--font-mono); font-size:12.5px; margin-top:1rem; padding:0.7rem 0.9rem; border-radius:5px; display:none;
+  }
+  .status-ok{display:block !important; background:rgba(46,156,140,0.12); color:var(--teal-light);}
+  .status-err{display:block !important; background:rgba(226,163,59,0.12); color:var(--amber);}
+  #app{display:none;}
+  .save-bar{position:sticky; bottom:0; background:var(--ink); border-top:1px solid var(--ink-line); padding:1rem 1.8rem; margin:0 -1.8rem; border-radius:0 0 8px 8px; display:flex; justify-content:space-between; align-items:center;}
+  .upload-result{margin-top:1rem; display:none;}
+</style>
+</head>
+<body>
+
+<div class="admin-shell">
+  <div class="admin-header">
+    <div class="brand"><span class="mark">TL</span> Trance Logistics — Admin</div>
+    <a href="index.html" class="btn btn-outline-dark" style="padding:0.5rem 1rem;">View site</a>
+  </div>
+
+  <div class="panel" id="connect-panel">
+    <h2>Connect to GitHub</h2>
+    <p class="hint">Your token is used only in this browser tab to call GitHub's API directly. It is never sent anywhere else, and nothing is saved after you close this page unless you check "remember on this device."</p>
+    <div class="field-row"><label>Owner</label><input id="gh-owner" placeholder="your-github-username"></div>
+    <div class="field-row"><label>Repo</label><input id="gh-repo" placeholder="trance-logistics"></div>
+    <div class="field-row"><label>Branch</label><input id="gh-branch" placeholder="main" value="main"></div>
+    <div class="field-row"><label>Token</label><input id="gh-token" type="password" placeholder="github_pat_..."></div>
+    <div class="field-row"><label>&nbsp;</label>
+      <label style="display:flex; align-items:center; gap:0.5rem; font-family:var(--font-body); font-size:0.85rem; text-transform:none; color:var(--text-on-dark-muted);">
+        <input type="checkbox" id="gh-remember" style="width:auto;"> Remember on this device (stores token in this browser only)
+      </label>
+    </div>
+    <button class="btn btn-amber" id="connect-btn">Connect</button>
+    <div id="connect-status"></div>
+  </div>
+
+  <div id="app">
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="site">Site info</button>
+      <button class="tab-btn" data-tab="hero">Hero</button>
+      <button class="tab-btn" data-tab="stats">Stats</button>
+      <button class="tab-btn" data-tab="services">Services</button>
+      <button class="tab-btn" data-tab="lanes">Trade lanes</button>
+      <button class="tab-btn" data-tab="testimonials">Testimonials</button>
+      <button class="tab-btn" data-tab="offices">Offices</button>
+      <button class="tab-btn" data-tab="about">About</button>
+      <button class="tab-btn" data-tab="uploads">Uploads</button>
+      <button class="tab-btn" data-tab="advanced">Advanced</button>
+    </div>
+
+    <div class="panel">
+      <div class="tab-panel active" id="tab-site"><h2>Site info</h2><p class="hint">Shown across every page: nav, footer, contact card.</p><div id="site-fields"></div></div>
+
+      <div class="tab-panel" id="tab-hero"><h2>Homepage hero</h2><p class="hint">The headline banner, including the animated route map. Route codes must be one of the known ports so the map can place them.</p><div id="hero-fields"></div></div>
+
+      <div class="tab-panel" id="tab-stats"><h2>Stat strip</h2><p class="hint">The four numbers under the hero.</p><div id="stats-list"></div><button class="add-btn" id="add-stat">+ Add stat</button></div>
+
+      <div class="tab-panel" id="tab-services"><h2>Services</h2><p class="hint">Cards shown on the homepage and services page.</p><div id="services-list"></div><button class="add-btn" id="add-service">+ Add service</button></div>
+
+      <div class="tab-panel" id="tab-lanes"><h2>Featured trade lanes</h2><p class="hint">The manifest-style table on the homepage.</p><div id="lanes-list"></div><button class="add-btn" id="add-lane">+ Add lane</button></div>
+
+      <div class="tab-panel" id="tab-testimonials"><h2>Testimonials</h2><p class="hint">Rotates automatically on the homepage.</p><div id="testimonials-list"></div><button class="add-btn" id="add-testimonial">+ Add testimonial</button></div>
+
+      <div class="tab-panel" id="tab-offices"><h2>Offices</h2><p class="hint">Shown on the about page.</p><div id="offices-list"></div><button class="add-btn" id="add-office">+ Add office</button></div>
+
+      <div class="tab-panel" id="tab-about"><h2>About page</h2><div id="about-fields"></div><h3 style="color:var(--text-on-dark); margin:1.4rem 0 0.8rem; font-size:0.95rem;">Values</h3><div id="values-list"></div><button class="add-btn" id="add-value">+ Add value</button></div>
+
+      <div class="tab-panel" id="tab-uploads">
+        <h2>Upload an image</h2>
+        <p class="hint">Uploads go to <span class="mono">assets/uploads/</span> in your repo. Copy the resulting path into any field that needs it (this site currently uses icons rather than photos, but this is here for logos, team photos, etc. you add later).</p>
+        <input type="file" id="upload-input" accept="image/*">
+        <div class="upload-result" id="upload-result"></div>
+      </div>
+
+      <div class="tab-panel" id="tab-advanced">
+        <h2>Advanced: raw content.json</h2>
+        <p class="hint">Full editing power, including fields with no dedicated form yet (like footer navigation links). Edit carefully — this must stay valid JSON.</p>
+        <textarea id="raw-json" style="width:100%; min-height:420px; background:var(--ink-mid); color:var(--text-on-dark); border:1px solid var(--ink-line); border-radius:6px; padding:1rem; font-family:var(--font-mono); font-size:12.5px;"></textarea>
+        <button class="btn btn-outline-dark" id="apply-raw" style="margin-top:0.8rem;">Apply raw JSON to form fields</button>
+      </div>
+
+      <div class="save-bar">
+        <span style="font-family:var(--font-mono); font-size:12px; color:var(--text-on-dark-muted);" id="sha-indicator"></span>
+        <button class="btn btn-amber" id="save-btn">Publish changes</button>
+      </div>
+      <div id="save-status"></div>
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/admin.js"></script>
+</body>
+</html>

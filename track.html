@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Track a Shipment — Trance Logistics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="container">
+    <a href="index.html" class="brand"><span class="mark" data-site-mark>TL</span> <span data-site-name>Trance Logistics</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="track.html">Track</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="contact.html" class="btn btn-amber"><span class="long">Get a</span> Quote</a>
+      <button class="nav-toggle" aria-label="Toggle menu">&#9776;</button>
+    </div>
+  </div>
+</nav>
+
+<header class="page-header" style="padding-bottom:5rem;">
+  <div class="container">
+    <div class="eyebrow">Shipment tracking</div>
+    <h1 style="margin:0.9rem 0 1.1rem;">Where's my cargo?</h1>
+    <p class="section-lede">Enter a tracking number to see the latest milestone. This is a preview of the tracker — try <span class="mono" style="color:var(--amber)">TL-58213</span> or <span class="mono" style="color:var(--amber)">TL-77490</span>.</p>
+
+    <div class="track-box mt-lg">
+      <div class="eyebrow">Tracking lookup</div>
+      <form class="track-form" id="track-form">
+        <input type="text" id="track-input" placeholder="e.g. TL-58213" autocomplete="off">
+        <button class="btn btn-amber" type="submit">Track</button>
+      </form>
+      <div id="track-error" style="display:none; color:var(--amber); font-family:var(--font-mono); font-size:12.5px; margin-top:0.9rem;">
+        No shipment found with that number. Double-check the reference or contact your coordinator.
+      </div>
+      <div class="track-result" id="track-result"></div>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container" style="max-width:640px;" class="text-center">
+    <h2>Don't have your tracking number?</h2>
+    <p class="section-lede mt-lg">Your coordinator sends it the moment your shipment is booked. If you've misplaced it, reach out and we'll pull it up.</p>
+    <a href="contact.html" class="btn btn-outline-light mt-lg">Contact your coordinator</a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="brand" style="margin-bottom:1rem;"><span class="mark" data-site-mark>TL</span> <span data-site-name>Trance Logistics</span></div>
+        <p style="max-width:280px; font-size:0.9rem;">Worldwide ocean, air and road freight — headquartered in Kampala, operating in 120+ countries.</p>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul data-footer-company></ul>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul data-footer-services></ul>
+      </div>
+      <div>
+        <h4>Head office</h4>
+        <p data-footer-address style="font-size:0.9rem;"></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> <span data-site-name>Trance Logistics</span>. All rights reserved.</span>
+      <span>B/L system status: <span style="color:var(--teal-light)">operational</span></span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+<script>
+  // Demo tracking data. This page previews the tracking experience with sample
+  // shipments — wiring it to real shipment data means connecting a backend or
+  // carrier API, which is a separate project from this static site.
+  const DEMO_SHIPMENTS = {
+    "TL-58213": {
+      origin: "Mombasa, KE", destination: "Rotterdam, NL", mode: "Ocean Freight",
+      milestones: [
+        { status: "Booking confirmed", meta: "Mombasa, KE · 3 Aug", done: true },
+        { status: "Departed origin port", meta: "Mombasa, KE · 6 Aug", done: true },
+        { status: "In transit", meta: "Indian Ocean · en route", done: true },
+        { status: "Customs clearance", meta: "Rotterdam, NL · pending arrival", done: false },
+        { status: "Out for delivery", meta: "Pending", done: false },
+      ],
+    },
+    "TL-77490": {
+      origin: "Kampala, UG", destination: "Dubai, AE", mode: "Air Freight",
+      milestones: [
+        { status: "Booking confirmed", meta: "Kampala, UG · 11 Aug", done: true },
+        { status: "Departed origin airport", meta: "Entebbe, UG · 12 Aug", done: true },
+        { status: "Customs clearance", meta: "Dubai, AE · 12 Aug", done: true },
+        { status: "Out for delivery", meta: "Dubai, AE · 13 Aug", done: true },
+        { status: "Delivered", meta: "Signed by receiving warehouse · 13 Aug", done: true },
+      ],
+    },
+  };
+
+  const form = document.getElementById("track-form");
+  const input = document.getElementById("track-input");
+  const resultBox = document.getElementById("track-result");
+  const errorBox = document.getElementById("track-error");
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const key = input.value.trim().toUpperCase();
+    const shipment = DEMO_SHIPMENTS[key];
+    errorBox.style.display = "none";
+    resultBox.classList.remove("show");
+
+    if (!shipment) {
+      errorBox.style.display = "block";
+      return;
+    }
+
+    resultBox.innerHTML = `
+      <div class="eyebrow">${key} · ${shipment.mode}</div>
+      <h3 style="color:var(--text-on-dark); margin:0.5rem 0 1.2rem;">${shipment.origin} &rarr; ${shipment.destination}</h3>
+      ${shipment.milestones
+        .map(
+          (m) => `
+        <div class="milestone ${m.done ? "" : "pending"}">
+          <div class="dot"></div>
+          <div>
+            <div class="m-status" style="color:${m.done ? "var(--text-on-dark)" : "var(--text-on-dark-muted)"}">${m.status}</div>
+            <div class="m-meta">${m.meta}</div>
+          </div>
+        </div>`
+        )
+        .join("")}
+    `;
+    resultBox.classList.add("show");
+  });
+</script>
+</body>
+</html>

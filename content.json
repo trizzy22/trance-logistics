@@ -1,0 +1,121 @@
+{
+  "site": {
+    "name": "Trance Logistics",
+    "tagline": "Freight that keeps its promises",
+    "phone": "+256 700 112 233",
+    "email": "ops@trancelogistics.com",
+    "address": "Plot 14, Kyaggwe Road, Kampala, Uganda",
+    "bl_number": "TL-2026-00417"
+  },
+  "hero": {
+    "eyebrow": "Worldwide cargo carrier",
+    "headline": "Freight that keeps its promises",
+    "sub": "Ocean, air and road freight for shippers who need a partner that answers the phone at 2am. From Kampala to over 120 countries, we move cargo — and we own every mile of the paperwork.",
+    "routes": [
+      {"code": "KLA", "label": "Kampala"},
+      {"code": "MBA", "label": "Mombasa"},
+      {"code": "DXB", "label": "Dubai"},
+      {"code": "RTM", "label": "Rotterdam"},
+      {"code": "SHA", "label": "Shanghai"}
+    ]
+  },
+  "stats": [
+    {"value": "120+", "label": "Countries served"},
+    {"value": "42,000+", "label": "Shipments moved / year"},
+    {"value": "99.2%", "label": "On-time delivery rate"},
+    {"value": "24/7", "label": "Operations desk"}
+  ],
+  "services": [
+    {
+      "code": "OCE-01",
+      "name": "Ocean Freight",
+      "desc": "FCL and LCL container shipping across every major trade lane, with consolidation out of Mombasa and Dar es Salaam.",
+      "icon": "ship"
+    },
+    {
+      "code": "AIR-02",
+      "name": "Air Freight",
+      "desc": "Time-critical cargo on scheduled and charter flights, with priority handling for perishables and pharma.",
+      "icon": "plane"
+    },
+    {
+      "code": "RDT-03",
+      "name": "Road & Rail",
+      "desc": "Cross-border trucking across the East African Community, plus rail links to inland container depots.",
+      "icon": "truck"
+    },
+    {
+      "code": "WHS-04",
+      "name": "Warehousing & Distribution",
+      "desc": "Bonded and general warehousing with pick-pack-ship fulfilment for regional distribution.",
+      "icon": "warehouse"
+    },
+    {
+      "code": "CUS-05",
+      "name": "Customs Brokerage",
+      "desc": "Licensed clearing agents handling documentation, duty calculation and compliance at every border post.",
+      "icon": "stamp"
+    },
+    {
+      "code": "PRJ-06",
+      "name": "Project & Heavy-Lift Cargo",
+      "desc": "Engineering, route surveys and permits for oversized, high-value and industrial cargo movements.",
+      "icon": "crane"
+    }
+  ],
+  "lanes": [
+    {"origin": "Mombasa, KE", "destination": "Rotterdam, NL", "transit": "24 days", "mode": "Ocean"},
+    {"origin": "Kampala, UG", "destination": "Dubai, AE", "transit": "18 hrs", "mode": "Air"},
+    {"origin": "Dar es Salaam, TZ", "destination": "Shanghai, CN", "transit": "29 days", "mode": "Ocean"},
+    {"origin": "Kampala, UG", "destination": "Nairobi, KE", "transit": "2 days", "mode": "Road"},
+    {"origin": "Mombasa, KE", "destination": "Kigali, RW", "transit": "5 days", "mode": "Road"}
+  ],
+  "testimonials": [
+    {
+      "quote": "Trance Logistics cleared a 40-foot container through three border posts in a week when we'd budgeted a month. That's the difference between a vendor and a partner.",
+      "author": "Grace Nakimuli",
+      "company": "Procurement Lead, Savanna Agro Exports"
+    },
+    {
+      "quote": "We moved our first air freight shipment with them on a Sunday night emergency. They picked up the phone. That's rare in this industry.",
+      "author": "Daniel Osei",
+      "company": "Supply Chain Manager, Nova Retail Group"
+    },
+    {
+      "quote": "Their customs team knows the Malaba and Busia posts better than our own staff do. Fewer delays, fewer surprises on the invoice.",
+      "author": "Miriam Achieng",
+      "company": "Operations Director, Highland Coffee Co."
+    }
+  ],
+  "offices": [
+    {"city": "Kampala", "country": "Uganda", "coords": "0.31\u00b0N 32.58\u00b0E", "role": "Headquarters"},
+    {"city": "Mombasa", "country": "Kenya", "coords": "4.04\u00b0S 39.66\u00b0E", "role": "Port operations"},
+    {"city": "Dubai", "country": "UAE", "coords": "25.20\u00b0N 55.27\u00b0E", "role": "Air freight hub"},
+    {"city": "Rotterdam", "country": "Netherlands", "coords": "51.92\u00b0N 4.48\u00b0E", "role": "European gateway"}
+  ],
+  "about": {
+    "eyebrow": "Est. Kampala",
+    "headline": "Built by people who've stood at the border post at 4am",
+    "story": "Trance Logistics started with a single truck route between Kampala and Mombasa, run by a team that had spent years watching cargo get stuck — not because of distance, but because of paperwork nobody owned. We built the company around a simple rule: every shipment gets one point of contact, from quote to final mile, regardless of how many borders, ports or airlines it touches.",
+    "mission": "To move cargo for East African businesses with the reliability of a global carrier and the responsiveness of a local partner.",
+    "values": [
+      {"title": "One point of contact", "desc": "You speak to one coordinator for the life of the shipment, not a rotating queue."},
+      {"title": "We own the paperwork", "desc": "Licensed customs brokers on staff at every major border and port we operate through."},
+      {"title": "No surprise invoices", "desc": "Landed cost quoted up front, including duties, handling and last-mile delivery."}
+    ]
+  },
+  "footerNav": {
+    "company": [
+      {"label": "About us", "href": "about.html"},
+      {"label": "Services", "href": "services.html"},
+      {"label": "Track a shipment", "href": "track.html"},
+      {"label": "Contact", "href": "contact.html"}
+    ],
+    "services": [
+      {"label": "Ocean freight", "href": "services.html#ocean"},
+      {"label": "Air freight", "href": "services.html#air"},
+      {"label": "Customs brokerage", "href": "services.html#customs"},
+      {"label": "Warehousing", "href": "services.html#warehousing"}
+    ]
+  }
+}

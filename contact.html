@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Trance Logistics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="container">
+    <a href="index.html" class="brand"><span class="mark" data-site-mark>TL</span> <span data-site-name>Trance Logistics</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="track.html">Track</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="contact.html" class="btn btn-amber"><span class="long">Get a</span> Quote</a>
+      <button class="nav-toggle" aria-label="Toggle menu">&#9776;</button>
+    </div>
+  </div>
+</nav>
+
+<header class="page-header">
+  <div class="container">
+    <div class="eyebrow">Get in touch</div>
+    <h1 style="margin:0.9rem 0 1.1rem;">Tell us what you're moving</h1>
+    <p class="section-lede">Share a few details and a coordinator will come back with a landed-cost quote — usually within one business day.</p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container contact-grid">
+    <form id="contact-form">
+      <div class="form-field">
+        <label for="name">Full name</label>
+        <input type="text" id="name" required>
+      </div>
+      <div class="form-field">
+        <label for="email">Email</label>
+        <input type="email" id="email" required>
+      </div>
+      <div class="form-field">
+        <label for="service">Service needed</label>
+        <select id="service">
+          <option>Ocean Freight</option>
+          <option>Air Freight</option>
+          <option>Road &amp; Rail</option>
+          <option>Warehousing &amp; Distribution</option>
+          <option>Customs Brokerage</option>
+          <option>Project &amp; Heavy-Lift Cargo</option>
+          <option>Not sure yet</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label for="message">Shipment details</label>
+        <textarea id="message" placeholder="Origin, destination, approximate volume/weight, timeline..." required></textarea>
+      </div>
+      <button type="submit" class="btn btn-amber">Send Request</button>
+      <p id="form-status" style="margin-top:1rem; font-family:var(--font-mono); font-size:12.5px; color:var(--teal); display:none;"></p>
+    </form>
+
+    <div class="contact-info-card" data-contact-info></div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="brand" style="margin-bottom:1rem;"><span class="mark" data-site-mark>TL</span> <span data-site-name>Trance Logistics</span></div>
+        <p style="max-width:280px; font-size:0.9rem;">Worldwide ocean, air and road freight — headquartered in Kampala, operating in 120+ countries.</p>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul data-footer-company></ul>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul data-footer-services></ul>
+      </div>
+      <div>
+        <h4>Head office</h4>
+        <p data-footer-address style="font-size:0.9rem;"></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> <span data-site-name>Trance Logistics</span>. All rights reserved.</span>
+      <span>B/L system status: <span style="color:var(--teal-light)">operational</span></span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+<script>
+  // This form currently opens the visitor's email client with a pre-filled
+  // message (works with zero backend, fine for GitHub Pages). To collect
+  // submissions directly instead, swap this for a form backend such as
+  // Formspree or Getform — point the fetch() at their endpoint with the
+  // same field values and no other changes are needed.
+  document.getElementById("contact-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const service = document.getElementById("service").value;
+    const message = document.getElementById("message").value;
+    const to = (window.__TL_CONTENT__ && window.__TL_CONTENT__.site.email) || "ops@trancelogistics.com";
+    const subject = encodeURIComponent("Quote request: " + service);
+    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nService: ${service}\n\n${message}`);
+    window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+
+    const status = document.getElementById("form-status");
+    status.style.display = "block";
+    status.textContent = "Opening your email app to send this — if nothing opens, email us directly instead.";
+  });
+</script>
+</body>
+</html>

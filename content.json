@@ -61,6 +61,24 @@
       "name": "Project & Heavy-Lift Cargo",
       "desc": "Engineering, route surveys and permits for oversized, high-value and industrial cargo movements.",
       "icon": "crane"
+    },
+    {
+      "code": "ARP-07",
+      "name": "Airport Clearance & Handling",
+      "desc": "Expedited customs clearance at major African airports with bonded warehouse storage and same-day delivery coordination.",
+      "icon": "plane-box"
+    },
+    {
+      "code": "FWD-08",
+      "name": "Freight Forwarding",
+      "desc": "Door-to-door freight forwarding with multi-modal routing, real-time tracking and complete documentation management.",
+      "icon": "forward"
+    },
+    {
+      "code": "CNT-09",
+      "name": "Large Container Shipping",
+      "desc": "Dedicated 20ft and 40ft container services with full load optimization, stacking permits and port-to-port logistics.",
+      "icon": "container"
     }
   ],
   "lanes": [
@@ -68,7 +86,9 @@
     {"origin": "Kampala, UG", "destination": "Dubai, AE", "transit": "18 hrs", "mode": "Air"},
     {"origin": "Dar es Salaam, TZ", "destination": "Shanghai, CN", "transit": "29 days", "mode": "Ocean"},
     {"origin": "Kampala, UG", "destination": "Nairobi, KE", "transit": "2 days", "mode": "Road"},
-    {"origin": "Mombasa, KE", "destination": "Kigali, RW", "transit": "5 days", "mode": "Road"}
+    {"origin": "Mombasa, KE", "destination": "Kigali, RW", "transit": "5 days", "mode": "Road"},
+    {"origin": "Entebbe, UG", "destination": "Addis Ababa, ET", "transit": "4 hrs", "mode": "Air"},
+    {"origin": "Dar es Salaam, TZ", "destination": "Mombasa, KE", "transit": "18 days", "mode": "Ocean"}
   ],
   "testimonials": [
     {
@@ -85,18 +105,30 @@
       "quote": "Their customs team knows the Malaba and Busia posts better than our own staff do. Fewer delays, fewer surprises on the invoice.",
       "author": "Miriam Achieng",
       "company": "Operations Director, Highland Coffee Co."
+    },
+    {
+      "quote": "Airport clearance that used to take 3 days now happens overnight. Their handling team at Entebbe is worth every shilling.",
+      "author": "James Kipchoge",
+      "company": "Logistics Manager, East African Pharma Ltd"
+    },
+    {
+      "quote": "Large container shipments with Trance are seamless—they manage everything from port ops to customs. No middlemen, no surprises.",
+      "author": "Amara Hassan",
+      "company": "Export Manager, African Textiles Co."
     }
   ],
   "offices": [
-    {"city": "Kampala", "country": "Uganda", "coords": "0.31\u00b0N 32.58\u00b0E", "role": "Headquarters"},
-    {"city": "Mombasa", "country": "Kenya", "coords": "4.04\u00b0S 39.66\u00b0E", "role": "Port operations"},
-    {"city": "Dubai", "country": "UAE", "coords": "25.20\u00b0N 55.27\u00b0E", "role": "Air freight hub"},
-    {"city": "Rotterdam", "country": "Netherlands", "coords": "51.92\u00b0N 4.48\u00b0E", "role": "European gateway"}
+    {"city": "Kampala", "country": "Uganda", "coords": "0.31°N 32.58°E", "role": "Headquarters"},
+    {"city": "Mombasa", "country": "Kenya", "coords": "4.04°S 39.66°E", "role": "Port operations"},
+    {"city": "Dubai", "country": "UAE", "coords": "25.20°N 55.27°E", "role": "Air freight hub"},
+    {"city": "Rotterdam", "country": "Netherlands", "coords": "51.92°N 4.48°E", "role": "European gateway"},
+    {"city": "Entebbe", "country": "Uganda", "coords": "0.03°N 32.45°E", "role": "Airport clearance"},
+    {"city": "Dar es Salaam", "country": "Tanzania", "coords": "-6.80°S 39.28°E", "role": "Regional hub"}
   ],
   "about": {
     "eyebrow": "Est. Kampala",
     "headline": "Built by people who've stood at the border post at 4am",
-    "story": "Trance Logistics started with a single truck route between Kampala and Mombasa, run by a team that had spent years watching cargo get stuck — not because of distance, but because of paperwork nobody owned. We built the company around a simple rule: every shipment gets one point of contact, from quote to final mile, regardless of how many borders, ports or airlines it touches.",
+    "story": "Trance Logistics started with a single truck route between Kampala and Mombasa, run by a team that had spent years watching cargo get stuck — not because of distance, but because of paperwork, delays and middlemen. Today we operate across nine major service lines, from airport clearance to large container shipping, with offices in six countries.",
     "mission": "To move cargo for East African businesses with the reliability of a global carrier and the responsiveness of a local partner.",
     "values": [
       {"title": "One point of contact", "desc": "You speak to one coordinator for the life of the shipment, not a rotating queue."},
@@ -114,8 +146,10 @@
     "services": [
       {"label": "Ocean freight", "href": "services.html#ocean"},
       {"label": "Air freight", "href": "services.html#air"},
-      {"label": "Customs brokerage", "href": "services.html#customs"},
-      {"label": "Warehousing", "href": "services.html#warehousing"}
+      {"label": "Airport clearance", "href": "services.html#airport"},
+      {"label": "Container shipping", "href": "services.html#containers"},
+      {"label": "Freight forwarding", "href": "services.html#forwarding"},
+      {"label": "Customs brokerage", "href": "services.html#customs"}
     ]
   }
 }

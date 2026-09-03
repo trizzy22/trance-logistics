@@ -116,9 +116,18 @@ h3{font-size:1.2rem;}
   height:72px;
 }
 .brand{
-  display:flex; align-items:center; gap:10px;
+  display:flex; align-items:center; gap:12px;
   font-family:var(--font-display); font-weight:700; font-size:1.15rem;
   color:var(--text-on-light);
+  transition:opacity 0.2s ease;
+}
+.brand:hover{
+  opacity:0.85;
+}
+.brand-logo{
+  height:50px;
+  width:auto;
+  max-width:50px;
 }
 .brand .mark{
   width:30px; height:30px; border-radius:6px;

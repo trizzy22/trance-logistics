@@ -1,0 +1,90 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Define gradients -->
+  <defs>
+    <linearGradient id="globeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0EA5A8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#14B8A6;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF6B35;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0EA5A8;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="gloss" cx="35%" cy="35%">
+      <stop offset="0%" style="stop-color:white;stop-opacity:0.4" />
+      <stop offset="100%" style="stop-color:white;stop-opacity:0" />
+    </radialGradient>
+  </defs>
+  
+  <!-- Background circle (optional, for visibility) -->
+  <circle cx="100" cy="100" r="95" fill="none" stroke="#E8ECF1" stroke-width="1" opacity="0.3"/>
+  
+  <!-- Globe/Earth -->
+  <circle cx="100" cy="100" r="70" fill="url(#globeGradient)" opacity="0.9"/>
+  <circle cx="100" cy="100" r="70" fill="url(#gloss)"/>
+  
+  <!-- Continents suggestion (simplified) -->
+  <g opacity="0.3" fill="rgba(255,255,255,0.6)">
+    <!-- Africa -->
+    <ellipse cx="105" cy="95" rx="12" ry="18"/>
+    <!-- Europe -->
+    <ellipse cx="90" cy="70" rx="8" ry="10"/>
+    <!-- Americas -->
+    <ellipse cx="65" cy="100" rx="10" ry="15"/>
+  </g>
+  
+  <!-- Ring around globe -->
+  <circle cx="100" cy="100" r="70" fill="none" stroke="#14B8A6" stroke-width="2" opacity="0.6"/>
+  <circle cx="100" cy="100" r="75" fill="none" stroke="#0EA5A8" stroke-width="1.5" opacity="0.4" stroke-dasharray="5,3"/>
+  
+  <!-- Airplane (upper right) -->
+  <g transform="translate(135, 65) rotate(-20)">
+    <!-- Fuselage -->
+    <ellipse cx="0" cy="0" rx="8" ry="4" fill="#1F2937"/>
+    <!-- Wings -->
+    <rect x="-15" y="-1.5" width="30" height="3" fill="#1F2937" rx="1.5"/>
+    <!-- Tail -->
+    <polygon points="6,0 12,-3 12,3" fill="#FF6B35"/>
+    <!-- Cockpit -->
+    <circle cx="-4" cy="-1" r="1.5" fill="#FFD700"/>
+  </g>
+  
+  <!-- Truck (lower left) -->
+  <g transform="translate(60, 140)">
+    <!-- Cabin -->
+    <rect x="-8" y="-6" width="10" height="8" fill="#1F2937" rx="1"/>
+    <!-- Trailer -->
+    <rect x="3" y="-5" width="15" height="7" fill="#0EA5A8" rx="1" opacity="0.85"/>
+    <!-- Front wheel -->
+    <circle cx="-5" cy="4" r="3" fill="#2D3748"/>
+    <circle cx="-5" cy="4" r="1.8" fill="#1F2937"/>
+    <!-- Back wheels -->
+    <circle cx="8" cy="4" r="3" fill="#2D3748"/>
+    <circle cx="8" cy="4" r="1.8" fill="#1F2937"/>
+    <circle cx="14" cy="4" r="3" fill="#2D3748"/>
+    <circle cx="14" cy="4" r="1.8" fill="#1F2937"/>
+    <!-- Window -->
+    <rect x="-7" y="-4" width="5" height="3" fill="#87CEEB" rx="0.5" opacity="0.7"/>
+  </g>
+  
+  <!-- Ship (lower center) -->
+  <g transform="translate(100, 155)">
+    <!-- Hull -->
+    <path d="M -12 0 L -14 4 L 14 4 L 12 0 Z" fill="#2D3748"/>
+    <!-- Water line -->
+    <line x1="-14" y1="4" x2="14" y2="4" stroke="#14B8A6" stroke-width="1" opacity="0.6"/>
+    <!-- Superstructure -->
+    <rect x="-6" y="-8" width="12" height="8" fill="#1F2937" rx="1"/>
+    <!-- Stack/Smokestack -->
+    <rect x="-2" y="-12" width="4" height="6" fill="#FF6B35" rx="1"/>
+    <!-- Porthole -->
+    <circle cx="0" cy="-4" r="1.5" fill="#87CEEB" opacity="0.7"/>
+  </g>
+  
+  <!-- Large stylized "TL" monogram in center -->
+  <g opacity="0.15">
+    <text x="100" y="115" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="#0F172A" text-anchor="middle" letter-spacing="2">TL</text>
+  </g>
+  
+  <!-- Glow effect around the entire logo -->
+  <circle cx="100" cy="100" r="80" fill="none" stroke="url(#accentGradient)" stroke-width="0.5" opacity="0.3" stroke-dasharray="2,3"/>
+</svg>
